@@ -13,7 +13,7 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="index.html">
+                    <a href="index.php">
                         <img src="assets/images/logo-teambuilder-blanco-2-1670x1184.png" alt="Mobirise" title="" style="height: 3.8rem;">
                     </a>
                 </span>
@@ -23,10 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
               <li class="nav-item">
-                    <a class="nav-link link text-warning display-4" href="index.html">INICIO</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link text-warning display-4" href="page2.html">MIS APUNTES</a>
+                    <a class="nav-link link text-warning display-4" href="index.php">INICIO</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link link text-warning display-4" href="page1.html">APUNTES</a>
@@ -41,12 +38,14 @@
                 </li>
                 <?php } ?>
               </ul>
+            <?php if(!$logged) { ?>  
             <div class="navbar-buttons mbr-section-btn">
               <a class="btn btn-sm btn-primary display-7" href="#" id="registrarme">
                 <span class="mbri-cursor-click mbr-iconfont mbr-iconfont-btn"></span>
                 REGISTRARSE
               </a>
             </div>
+            <?php } ?>
         </div>
     </nav>
 

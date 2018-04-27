@@ -61,8 +61,8 @@ switch ($_REQUEST["action"]) {
                     $_SESSION['user'] = $email;
 
                     $link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" . "/includes/process_login.php?action=validarEmail&validationCode=".$code."&email=".$email;
-                    $message = "Bienvenido a TusApuntes.com ----- <br><br>Por favor, sigue el link para validar tu correo o copia y pega la dirección en tu navegador <br><a href='".$link."'>".$link."</a>";
-                    $asunto = 'Validar Email para TusApuntes.net';
+                    $message = "Bienvenido a espaciomalcolm.com.ar ----- <br><br>Por favor, sigue el link para validar tu correo o copia y pega la dirección en tu navegador <br><a href='".$link."'>".$link."</a>";
+                    $asunto = 'Validar Email para espaciomalcolm.com.ar';
                     $sendEmail = enviarMail($asunto, $message, $email);
                     
                     if ($sendEmail == true) {
