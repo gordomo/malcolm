@@ -3,52 +3,52 @@ include_once '../../includes/db_connect.php';
 include_once '../../includes/funciones.php';
 
 switch ($_REQUEST["action"]) {
-	case 'nuevaCategoria':
+	case 'nuevaMateria':
 
 		$name = $_POST['name'];
-
-		if ($stmt = $mysqli->prepare("INSERT INTO categorias (`name`) VALUES (?)")) {
+		
+		if ($stmt = $mysqli->prepare("INSERT INTO materias (`name`) VALUES (?)")) {
 			$stmt->bind_param('s', $name);
 			if (!$stmt->execute()) {
-				header('Location: ../categorias.php?status=2');        	
+				header('Location: ../materias.php?status=2');        	
 			}
 			$stmt->close();
-			header('Location: ../categorias.php?status=0');
+			header('Location: ../materias.php?status=0');
 		} else {
-			header('Location: ../categorias.php?status=1');
+			header('Location: ../materias.php?status=1');
 		}
 	break;
-	case "editarCategoria":
-		$id = str_replace("cat-", '', $_GET['id']);
+	case "editarMateria":
+		$id = $_GET['id'];
 		$val = $_GET['val'];
 
-		if ($stmt = $mysqli->prepare("UPDATE categorias set `name` = ? WHERE `id` = ?")) {
+		if ($stmt = $mysqli->prepare("UPDATE materias set `name` = ? WHERE `id` = ?")) {
 			$stmt->bind_param('si', $val, $id);
 			if (!$stmt->execute()) {
-				header('Location: ../categorias.php?status=2');        	
+				header('Location: ../materias.php?status=2');        	
 			}
 			$stmt->close();
-			header('Location: ../categorias.php?status=0');
+			header('Location: ../materias.php?status=0');
 		} else {
 			$message = "Falló la ejecución: (" . $stmt->errno . ") " . $stmt->error;
-			header('Location: ../categorias.php?mensaje='.$message);
+			header('Location: ../materias.php?mensaje='.$message);
 		}
 		
 	break;
 
-	case "borrarCategoria":
-		$id = str_replace("cat-", '', $_GET['id']);
+	case "borrarMateria":
+		$id = $_GET['id'];
 		
-		if ($stmt = $mysqli->prepare("DELETE FROM categorias WHERE `id` = ?")) {
+		if ($stmt = $mysqli->prepare("DELETE FROM materias WHERE `id` = ?")) {
 			$stmt->bind_param('i', $id);
 			if (!$stmt->execute()) {
-				header('Location: ../categorias.php?status=2');        	
+				header('Location: ../materias.php?status=2');        	
 			}
 			$stmt->close();
-			header('Location: ../categorias.php?status=3');
+			header('Location: ../materias.php?status=0');
 		} else {
 			$message = "Falló la ejecución: (" . $stmt->errno . ") " . $stmt->error;
-			header('Location: ../categorias.php?mensaje='.$message);
+			header('Location: ../materias.php?mensaje='.$message);
 		}
 	break;
 

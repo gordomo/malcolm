@@ -31,7 +31,7 @@ CREATE TABLE `usuarios` (
   `email` text NOT NULL,
   `pass` text NOT NULL,
   `grup` int(11) NOT NULL DEFAULT '0',
-  `cursos` text NOT NULL,
+  `materias` text NOT NULL,
   `code` text NOT NULL,
   `dni` int(11) NOT NULL,
   `nombre` text NOT NULL,
@@ -63,3 +63,7 @@ ALTER TABLE `usuarios`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+CREATE TABLE `malcolm`.`materias` ( `id` INT NOT NULL AUTO_INCREMENT , `name` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = MyISAM;
+

@@ -1,8 +1,8 @@
 <?php
-include_once 'db_connect.php';
-include_once 'funciones.php';
+include_once '../../includes/db_connect.php';
+include_once '../../includes/funciones.php';
 
-require_once('phpmailer/class.phpmailer.php');
+require_once('../../includes/phpmailer/class.phpmailer.php');
 
 sec_session_start(); // Our custom secure way of starting a PHP session.
 
@@ -107,7 +107,7 @@ switch ($_REQUEST["action"]) {
                     $_SESSION['grup'] = $grup;                   
 
                     if ($grup != 0) {
-                        header('Location: ../admin/padmin.php');
+                        header('Location: ../');
                     } 
                     else {                       
                         if(!$valid){    

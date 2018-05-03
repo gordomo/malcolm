@@ -5,8 +5,8 @@ function login_check()
 }
 
 
-function getCategorias($mysqli, $todas = true) {
-  $query = "SELECT * FROM categorias WHERE 1 = 1";
+function getMaterias($mysqli, $todas = true) {
+  $query = "SELECT * FROM materias WHERE 1 = 1";
   if (!$todas) 
   {
     $query .= " and habilitada = 1";
@@ -19,8 +19,8 @@ function getCategorias($mysqli, $todas = true) {
       
 }
 
-function getCategoria($mysqli, $id) {
-  $query = "SELECT * FROM categorias WHERE id = ".$id;
+function getMateria($mysqli, $id) {
+  $query = "SELECT * FROM materias WHERE id = ".$id;
   $resultado = $mysqli->query($query);
   $row = $resultado->fetch_assoc();
   
