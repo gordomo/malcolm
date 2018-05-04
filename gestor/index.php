@@ -80,7 +80,7 @@ $mensaje = getMensaje($state, $user);
 
             <div class="card p-3 col-12 col-md-6 col-lg-4">
                 <div class="card-img pb-3">
-                    <a href="page3.html"><span class="mbr-iconfont mbri-user" style="color: rgb(0, 0, 0);"></span></a>
+                    <a href="usuario.php"><span class="mbr-iconfont mbri-user" style="color: rgb(0, 0, 0);"></span></a>
                 </div>
                 <div class="card-box">
                     <h4 class="card-title py-3 mbr-fonts-style display-5">Usuarios</h4>
