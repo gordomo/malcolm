@@ -67,3 +67,5 @@ ALTER TABLE `usuarios`
 
 CREATE TABLE `malcolm`.`materias` ( `id` INT NOT NULL AUTO_INCREMENT , `name` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = MyISAM;
 
+CREATE TABLE `malcolm`.`anios` ( `id` INT NOT NULL AUTO_INCREMENT, `name` TEXT NOT NULL, `mat_id` INT NOT NULL, PRIMARY KEY (`id`));
+
