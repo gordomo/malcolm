@@ -107,7 +107,7 @@ switch ($_REQUEST["action"]) {
                     $_SESSION['grup'] = $grup;                   
 
                     if ($grup != 0) {
-                        header('Location: ../admin/padmin.php');
+                        header('Location: ../gestor/index.php');
                     } 
                     else {                       
                         if(!$valid){    
