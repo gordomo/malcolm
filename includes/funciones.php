@@ -31,8 +31,20 @@ function getMateria($mysqli, $id) {
   return $row;
 }
 
-function getSubCategoria($mysqli, $id) {
-  $query = "SELECT * FROM subcategorias WHERE id =".$id;
+function getAnios($mysqli, $todas = true) {
+  $query = "SELECT * FROM anios WHERE 1 = 1";
+  if (!$todas) {
+    $query .= " and habilitada = 1";
+  }
+  $query .= " ORDER BY id desc";
+  
+  $resultado = $mysqli->query($query);
+ 
+  return $resultado;
+}
+
+function getAnio($mysqli, $id) {
+  $query = "SELECT * FROM anios WHERE id =".$id;
   $resultado = $mysqli->query($query);
   
   $row = $resultado->fetch_assoc();
@@ -43,25 +55,8 @@ function getSubCategoria($mysqli, $id) {
   return $row;
 }
 
-function getSubCategorias($mysqli, $todas = true) {
-  $query = "SELECT * FROM subcategorias WHERE 1 = 1";
-  if (!$todas) {
-    $query .= " and habilitada = 1";
-  }
-  $query .= " ORDER BY id desc";
-  $resultado = $mysqli->query($query);
-  $subcategorias = array();
-  while ($respuesta = $resultado->fetch_assoc()) {
-    $subcategorias[] = $respuesta;
-  }
-  if ($resultado) {
-    $resultado->free();
-  }
-  return $subcategorias;
-}
-
-function getSubCategoriasFromCat($mysqli, $cat) {   
-  $query = "SELECT * FROM subcategorias WHERE cat_id = " . $cat;
+function getAnioFromMat($mysqli, $mat) {   
+  $query = "SELECT * FROM anios WHERE mat_id = " . $mat;
   $query .= " ORDER BY id desc";
   
   $resultado = $mysqli->query($query);
