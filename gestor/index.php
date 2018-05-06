@@ -70,7 +70,7 @@ $mensaje = getMensaje($state, $user);
 
             <div class="card p-3 col-12 col-md-6 col-lg-4">
                 <div class="card-img pb-3">
-                    <a href="page5.html"><span class="mbr-iconfont mbri-pages" style="color: rgb(0, 0, 0);"></span></a>
+                    <a href="apuntes.php"><span class="mbr-iconfont mbri-pages" style="color: rgb(0, 0, 0);"></span></a>
                 </div>
                 <div class="card-box">
                     <h4 class="card-title py-3 mbr-fonts-style display-5">Apuntes</h4>
@@ -87,19 +87,6 @@ $mensaje = getMensaje($state, $user);
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
             </div>
-
-            <div class="card p-3 col-12 col-md-6 col-lg-4">
-                <div class="card-img pb-3">
-                    <a href="materias.php"><span class="mbr-iconfont mbri-bulleted-list" style="color: rgb(35, 35, 35);"></span></a>
-                </div>
-                <div class="card-box">
-                    <h4 class="card-title py-3 mbr-fonts-style display-5">
-                        Materias</h4>
-                    <p class="mbr-text mbr-fonts-style display-7"></p>
-                </div>
-            </div>
-
-            
 
         </div>
 
@@ -121,13 +108,14 @@ $mensaje = getMensaje($state, $user);
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
             </div>
-
+            
             <div class="card p-3 col-12 col-md-6">
                 <div class="card-img pb-3">
-                    <a href="page8.html"><span class="mbr-iconfont mbri-opened-folder" style="color: rgb(35, 35, 35);"></span></a>
+                    <a href="materias.php"><span class="mbr-iconfont mbri-bulleted-list" style="color: rgb(35, 35, 35);"></span></a>
                 </div>
                 <div class="card-box">
-                    <h4 class="card-title py-3 mbr-fonts-style display-5">Sub Sub Categorías</h4>
+                    <h4 class="card-title py-3 mbr-fonts-style display-5">
+                        Materias</h4>
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
             </div>

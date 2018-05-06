@@ -5,19 +5,17 @@ include_once '../../includes/funciones.php';
 switch ($_REQUEST["action"]) {
 	case 'nuevoApunte':
 	$name = $_POST['name'];
-	$cat_id = $_POST['categoria'];
-	$sub_cat_id = $_POST['subcat'];
-    $subsub_cat_id = $_POST['subsubcat'];
-    $pages = $_POST['pages'];
+	$mat_id = $_POST['materia'];
+	$anio_id = $_POST['anios'];
 	$file = $_FILES['fileToUpload'];
-	$cat_name = limpiarString(getCategoria($mysqli, $cat_id)["name"]);
-	$sub_cat_name = limpiarString(getSubCategoria($mysqli, $sub_cat_id)["name"]);
-    $subsub_cat_name = limpiarString(getSubSubCategoria($mysqli, $subsub_cat_id)["name"]); 
         
-	$uploadStatus = uploadFile($file, $cat_name, $sub_cat_name, $subsub_cat_name);
+	$mat_name = limpiarString(getMateria($mysqli, $mat_id)["name"]);
+	$anio_name = limpiarString(getAnio($mysqli, $anio_id)["name"]);
+              
+	$uploadStatus = uploadFile($file, $mat_name, $anio_name);
 	if(isset($uploadStatus['ok']) && $uploadStatus['ok']) {
-		if ($stmt = $mysqli->prepare("INSERT INTO apuntes (`name`, `cat_id`, `sub_cat_id`, `file`, `pages`, `subsub_cat_id` ) VALUES (?, ?, ?, ?, ?, ?)")) {
-			$stmt->bind_param('siisii', $name, $cat_id, $sub_cat_id, $uploadStatus['ruta'], $pages, $subsub_cat_id);
+		if ($stmt = $mysqli->prepare("INSERT INTO apuntes (`name`, `mat_id`, `anio_id`, `file` ) VALUES (?, ?, ?, ?)")) {
+			$stmt->bind_param('siis', $name, $mat_id, $anio_id, $uploadStatus['ruta']);
 			if (!$stmt->execute()) {
 				header('Location: ../apuntes.php?status=2');        	
 			}
@@ -33,15 +31,13 @@ switch ($_REQUEST["action"]) {
 	break;
 	case "editarApunte":
 		$name = $_POST['name'];
-		$cat_id = $_POST['id_cat'];
-		$sub_cat_id = $_POST['sub_cat_id'];
-                $subsub_cat_id = $_POST['subsub_cat_id'];
+		$mat_id = $_POST['mat_id'];
+		$anio_id = $_POST['anio_id'];
 		$file = $_FILES;
-		$id = $_POST['id'];
-		$cat_name = limpiarString($_POST['cat_name']);
-		$sub_cat_name = limpiarString($_POST['sub_cat_name']);
-        $subsub_cat_name = limpiarString($_POST['subsub_cat_name']);
-        $pages = $_POST['pages'];
+		$id = $_POST['id'];               
+                
+		$mat_name = limpiarString($_POST['mat_name']);
+		$anio_name = limpiarString($_POST['anio_name']);
                               
 		if (!empty($_FILES) && $stmt = $mysqli->prepare("SELECT file FROM apuntes WHERE id=?")) {
 			/* ligar parámetros para marcadores */
@@ -58,23 +54,23 @@ switch ($_REQUEST["action"]) {
 			/* cerrar sentencia */
 			$stmt->close();
 			if (file_exists($file)) {
-                unlink($file);
-            }
+                            unlink($file);
+                        }
 		}
 		
 		if(empty($_FILES)) {
-			$query = "UPDATE apuntes set `name` = ?, `cat_id` = ?, `sub_cat_id` = ? , `pages` = ?, `subsub_cat_id` = ? WHERE `id` = ?";
+			$query = "UPDATE apuntes set `name` = ?, `mat_id` = ?, `anio_id` = ? WHERE `id` = ?";
 		} else {
-			$query = "UPDATE apuntes set `name` = ?, `cat_id` = ?, `sub_cat_id` = ?, `pages` = ?, `file` = ?, `subsub_cat_id` = ? WHERE `id` = ?";
+			$query = "UPDATE apuntes set `name` = ?, `mat_id` = ?, `anio_id` = ?, `file` = ? WHERE `id` = ?";
 		}
-		
+
 		if ($stmt = $mysqli->prepare($query)) {
 			if(empty($_FILES)) {
-				$stmt->bind_param('siiiii', $name, $cat_id, $sub_cat_id, $pages, $subsub_cat_id, $id);
-			} else {
-				$uploadStatus = uploadFile($_FILES['file'], $cat_name, $sub_cat_name, $subsub_cat_name);
+				$stmt->bind_param('siii', $name, $mat_id, $anio_id, $id);
+			} else {                              
+				$uploadStatus = uploadFile($_FILES['file'], $mat_name, $anio_name);
 				if(isset($uploadStatus['ok']) && $uploadStatus['ok']) {
-					$stmt->bind_param('siiisii', $name, $cat_id, $sub_cat_id, $pages, $uploadStatus['ruta'], $subsub_cat_id, $id);
+					$stmt->bind_param('siisi', $name, $mat_id, $anio_id, $uploadStatus['ruta'], $id);
 				} else {
 					echo json_encode (array("result"=>"ko", "status"=>4));
 				}
@@ -130,31 +126,19 @@ switch ($_REQUEST["action"]) {
 		}
 	break;
 
-	case "getSubCategoriasFromCat":
-		$idCat = $_POST['idCat'];
-                $resultado = getSubCategoriasFromCat($mysqli, $idCat);
-                $subcategorias = array();
+	case "getAnioFromMat":
+		$idMat = $_POST['idMat'];
+                $resultado = getAnioFromMat($mysqli, $idMat);
+                $anios = array();
                 while ($respuesta = $resultado->fetch_assoc()) {
-                  $subcategorias[] = $respuesta;
+                  $anios[] = $respuesta;
                 }
                 if ($resultado) {
                   $resultado->free();
                 }
-		echo json_encode($subcategorias);
+		echo json_encode($anios);
 	exit();
         
-        case "getSubSubCategoriasFromSubCat":
-		$idSubCat = $_POST['idSubCat'];
-                $resultado = getSubSubCategoriasFromSubCat($mysqli, $idSubCat);
-                $subsubcategorias = array();
-                while ($respuesta = $resultado->fetch_assoc()) {
-                  $subsubcategorias[] = $respuesta;
-                }
-                if ($resultado) {
-                  $resultado->free();
-                }
-		echo json_encode($subsubcategorias);
-	exit();
 }
 
 function limpiarString($texto)

@@ -69,3 +69,5 @@ CREATE TABLE `malcolm`.`materias` ( `id` INT NOT NULL AUTO_INCREMENT , `name` TE
 
 CREATE TABLE `malcolm`.`anios` ( `id` INT NOT NULL AUTO_INCREMENT, `name` TEXT NOT NULL, `mat_id` INT NOT NULL, PRIMARY KEY (`id`));
 
+CREATE TABLE `malcolm`.`apuntes` ( `id` INT NOT NULL AUTO_INCREMENT, `name` TEXT NOT NULL, `mat_id` INT NOT NULL, `anio_id` INT NOT NULL, `file` TEXT NOT NULL, PRIMARY KEY (`id`));
+
