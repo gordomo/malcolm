@@ -64,44 +64,6 @@ function getAnioFromMat($mysqli, $mat) {
   return $resultado;
 }
 
-function getSubSubCategoria($mysqli, $id) {
-  $query = "SELECT * FROM subsubcategorias WHERE id =".$id;
-  $resultado = $mysqli->query($query);
-  
-  $row = $resultado->fetch_assoc();
-  
-  if ($resultado) {
-    $resultado->free();
-  }
-  return $row;
-}
-
-function getSubSubCategorias($mysqli, $todas = true) {
-  $query = "SELECT * FROM subsubcategorias WHERE 1 = 1";
-  if (!$todas) {
-    $query .= " and habilitada = 1";
-  }
-  $query .= " ORDER BY id desc";
-  $resultado = $mysqli->query($query);
-  $subsubcategorias = array();
-  while ($respuesta = $resultado->fetch_assoc()) {
-    $subsubcategorias[] = $respuesta;
-  }
-  if ($resultado) {
-    $resultado->free();
-  }
-  return $subsubcategorias;
-}
-
-function getSubSubCategoriasFromSubCat($mysqli, $subcat) {   
-  $query = "SELECT * FROM subsubcategorias WHERE sub_cat_id = " . $subcat;
-  $query .= " ORDER BY id desc";
-  
-  $resultado = $mysqli->query($query);
- 
-  return $resultado;
-}
-
 function getApunte($mysqli, $id)
 {
   $query = "SELECT * FROM apuntes WHERE id = $id";
@@ -123,23 +85,9 @@ function getApuntes($mysqli, $todas = true) {
     $query .= " and habilitada = 1";
   }
   $query .= " ORDER BY id desc";
+  
   $resultado = $mysqli->query($query);
-  $apuntes = array();
-  while ($respuesta = $resultado->fetch_assoc()) {
-    $apuntes[] = $respuesta;
-  }
-  if ($resultado) {
-    $resultado->free();
-  }
-  return $apuntes;
-}
-
-function getSubSubFromSubCategoria($mysqli, $id)
-{
-  $query = "SELECT * FROM subsubcategorias WHERE sub_cat_id = $id";
-
-  $resultado = $mysqli->query($query);
-
+  
   return $resultado;
 }
 
@@ -253,7 +201,7 @@ function sec_session_start() {
     return $mensaje;
   }
 
-function uploadFile($file, $cat, $subcat, $subsubcat) {
+function uploadFile($file, $mat, $anio) {
   if ($file['error'] !== UPLOAD_ERR_OK) {
     $message = "Upload failed with error " . $file['error'];
     return array("message"=>$message, "ok"=>false);
@@ -270,7 +218,7 @@ function uploadFile($file, $cat, $subcat, $subsubcat) {
          break;
   }
 
-  $ruta = '../uploads/'. $cat . '/' . $subcat. '/' . $subsubcat;
+  $ruta = '../uploads/'. $mat . '/' . $anio;
   
   if (!file_exists($ruta)) {
     mkdir($ruta, 0777, true);

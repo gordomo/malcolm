@@ -116,7 +116,7 @@ $anios    = getAnios($mysqli);
                                                 <input type="text" id="<?=$anio['id']?>" value="<?=$anio['name']?>">
                                             </td>
                                             <td class="body-item mbr-fonts-style display-7">
-                                                <select id="mat_edit">
+                                                <select id="mat-edit-<?=$anio['id']?>">
                                                   <option>sin categoria</option>
                                                   <?php foreach ($materias as $mat) { ?>
                                                     <option value="<?=$mat['id']?>" <?=($mat['id'] == $anio['mat_id']) ? 'selected' : ''?>><?=$mat['name']?></option>
@@ -158,7 +158,7 @@ $anios    = getAnios($mysqli);
     
 <script>
       function sendToEdit(id) {
-          location.href= "controllers/materias_controller.php?action=editarAnio&val=" + $('#'+id).val() + "&matId=" + $('#mat_edit').val() + "&id="+id;
+          location.href= "controllers/materias_controller.php?action=editarAnio&val=" + $('#'+id).val() + "&matId=" + $('#mat-edit-'+id).val() + "&id="+id;
       }
 </script>    
 
