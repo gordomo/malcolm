@@ -6,12 +6,21 @@ sec_session_start();
 $logged = false;
 $user = '';
 if (login_check($mysqli) == true) {
-  if(isset($_SESSION['grup']) && $_SESSION['grup'] != 0) {
-    $logged = true;
-    $user = $_SESSION['user'];
-  }
+  $logged = true;
+  $user = $_SESSION['user'];
 }
+$state = 0;
+
+if (isset($_SESSION['state'])) {
+  $state = $_SESSION['state'];
+  unset($_SESSION['state']);
+}
+
+$mensaje = '';
+$mensaje = getMensaje($state, $user);
+
 $usuarios = getUsuariosNoAdmin($mysqli);
+$materias = getMaterias($mysqli);
 
 ?>
 <!DOCTYPE html>
@@ -21,9 +30,10 @@ $usuarios = getUsuariosNoAdmin($mysqli);
   <?php include_once("includes/headerlinks.html"); ?>
 </head>
 <body>
-  <?php include_once("includes/navbar.php"); ?>
+    <?php if($logged) { ?>
+    <?php include_once("includes/navbar.php"); ?>
 
-    <section class="engine"><a href="https://mobirise.ws/o">best mobile website builder</a></section><section class="table2 section-table cid-qMp0MbzhHl" id="table2-j">
+    <section class="table2 section-table cid-qMp0MbzhHl" id="table2-j">
     
     <div class="container-fluid">
         <div class="media-container-row align-center">
@@ -48,18 +58,34 @@ $usuarios = getUsuariosNoAdmin($mysqli);
                     <div class="container-fluid scroll">
                         <table class="table table-striped isSearch" cellspacing="0">
                             <thead>
-                                <tr class="table-heads">   
+                                <tr class="table-heads">
+                                    <th class="head-item mbr-fonts-style display-7">NOMBRE</th>
                                     <th class="head-item mbr-fonts-style display-7">EMAIL</th>
-                                    <th class="head-item mbr-fonts-style display-7">MATERIA</th>
                                     <th class="head-item mbr-fonts-style display-7">CONFIRMACIÓN</th>
+                                    <th class="head-item mbr-fonts-style display-7">MATERIA</th>                                   
+                                    <th class="head-item mbr-fonts-style display-7">-</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php while($fila = $usuarios->fetch_assoc()){ ?>
-                                <tr>   
-                                    <td class="body-item mbr-fonts-style display-7"><?= $fila['email'] ?></td>
-                                    <td class="body-item mbr-fonts-style display-7"></td>
-                                    <td class="body-item mbr-fonts-style display-7"><?php $valid = ($fila['valid']) ?  "SI" : "NO"; echo $valid;  ?></td>
+                            <?php foreach ($usuarios as $usuario) { ?>
+                                <tr>
+                                    <td class="body-item mbr-fonts-style display-7"><?= $usuario['nombre'] ?></td>
+                                    <td class="body-item mbr-fonts-style display-7"><?= $usuario['email'] ?></td>
+                                    <td class="body-item mbr-fonts-style display-7"><?php $valid = ($usuario['valid']) ?  "SI" : "NO"; echo $valid;  ?></td>
+                                    <td class="body-item mbr-fonts-style display-7">
+                                        <?php $materiasUser = json_decode($usuario['materias']);
+                                        
+                                         if(!empty($materiasUser)){ foreach ($materias as $mat) { ?>
+                                            <?php foreach($materiasUser as $matUser) { ?>
+                                                   <?php if($mat['id'] == $matUser) { ?>
+                                                         <?= $mat['name']?>,    
+                                                   <?php } ?>
+                                            <?php }  ?>
+                                        <?php } }else{ echo 'Ninguna';} ?>
+                                    </td>                                   
+                                    <td class="body-item mbr-fonts-style display-7">
+                                        <a href="asignar_materias.php?id=<?=$usuario['id']?>"><button class="btn btn-default">Asignar Materias</button></a>
+                                    </td>
                                 </tr>
                             <?php } ?>    
                             </tbody>
@@ -70,7 +96,7 @@ $usuarios = getUsuariosNoAdmin($mysqli);
                           <div class="dataTables_info">
                             <span class="infoBefore">Mostrando</span>
                             <span class="inactive infoRows"></span>
-                            <span class="infoAfter">entradas</span>
+                            <span class="infoAfter">registros</span>
                             <span class="infoFilteredBefore">(filtradas de un total de:</span>
                             <span class="inactive infoRows"></span>
                             <span class="infoFilteredAfter">)</span>
@@ -82,7 +108,9 @@ $usuarios = getUsuariosNoAdmin($mysqli);
         </div>
     </div>
 </section>
-
+<?php } else { ?>
+    No se ha iniciado sesion
+    <?php } ?>
 <?php include_once("includes/footer.html") ?>
    
 </body>
