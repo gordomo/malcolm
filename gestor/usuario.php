@@ -74,13 +74,16 @@ $materias = getMaterias($mysqli);
                                     <td class="body-item mbr-fonts-style display-7"><?php $valid = ($usuario['valid']) ?  "SI" : "NO"; echo $valid;  ?></td>
                                     <td class="body-item mbr-fonts-style display-7">
                                         <?php $materiasUser = json_decode($usuario['materias']);
-                                        
-                                         if(!empty($materiasUser)){ foreach ($materias as $mat) { ?>
-                                            <?php foreach($materiasUser as $matUser) { ?>
-                                                   <?php if($mat['id'] == $matUser) { ?>
-                                                         <?= $mat['name']?>,    
-                                                   <?php } ?>
-                                            <?php }  ?>
+                                        if(!empty($materiasUser)) {
+                                            $i = 0;
+                                            foreach ($materias as $mat) { 
+                                                if(in_array($mat['id'], $materiasUser)) {
+                                                    if($i > 0 && $i != count($materiasUser) + 1 ) echo "- ";
+                                                    echo $mat['name']; 
+                                                    $i ++;
+                                                }
+                                            ?>
+                                            
                                         <?php } }else{ echo 'Ninguna';} ?>
                                     </td>                                   
                                     <td class="body-item mbr-fonts-style display-7">

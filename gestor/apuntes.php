@@ -121,9 +121,9 @@ $apuntes = getApuntes($mysqli);
                                     <th class="head-item mbr-fonts-style display-7">NOMBRE</th>
                                     <th class="head-item mbr-fonts-style display-7">MATERIA</th>
                                     <th class="head-item mbr-fonts-style display-7">AÑO</th>
-                                    <th class="head-item mbr-fonts-style display-5">FILE</th>
-                                    <th class="head-item mbr-fonts-style display-5">-</th>
-                                    <th class="head-item mbr-fonts-style display-5">-</th>
+                                    <th class="head-item mbr-fonts-style display-7">ARCHIVO</th>
+                                    <th class="head-item mbr-fonts-style display-7">-</th>
+                                    <th class="head-item mbr-fonts-style display-7">-</th>
                                 </tr>
                             </thead>
 
@@ -150,13 +150,18 @@ $apuntes = getApuntes($mysqli);
                                     </select>
                                   </td>
                                   <td class="body-item mbr-fonts-style display-9" >
+                                    <span><?=substr(strrchr($apunte['file'], "/"), 1);?></span>
                                     <input type="file" name="fileToUpload" required="true" id="file-apunte-<?=$apunte['id']?>">
                                   </td>
                                   <td class="body-item mbr-fonts-style display-7">
-                                    <button id="<?=$apunte['id']?>" class="btn btn-default editApunte">editar</button>
+                                    <a href="" id="<?=$apunte['id']?>" class="btn btn-default editApunte" style="font-size: 25px; margin:0; padding: 0;">
+                                        <span class="mbri-edit mbr-iconfont mbr-iconfont-btn" ></span>
+                                    </a>
                                   </td>
                                   <td class="body-item mbr-fonts-style display-7">
-                                    <a class="btn btn-default" href="controllers/apuntes_controller.php?action=borrarApunte&id=<?=$apunte['id']?>">borrar</a>
+                                    <a class="btn btn-default" href="controllers/apuntes_controller.php?action=borrarApunte&id=<?=$apunte['id']?>" style="font-size: 25px; margin:0; padding: 0;">
+                                        <span class="mbri-close mbr-iconfont mbr-iconfont-btn" ></span>
+                                    </a>
                                   </td>
                                 </tr>  
                                 <?php } ?>

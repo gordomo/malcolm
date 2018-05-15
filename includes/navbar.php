@@ -26,7 +26,7 @@
                     <a class="nav-link link text-warning display-4" href="index.php">INICIO</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link link text-warning display-4" href="page1.html">APUNTES</a>
+                  <a class="nav-link link text-warning display-4" href="materias.php">APUNTES</a>
                 </li>
                 <?php if($logged) { ?>
                 <li class="nav-item">

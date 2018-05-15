@@ -30,12 +30,12 @@ $mensaje = getMensaje($state, $user);
 <html >
 <head>
 
-  <?php include("includes/headerlinks.html") ?>
+  <?php include("includes/headerlinks.html"); ?>
   
   
 </head>
 <body>
-  <?php include("includes/navbar.php") ?>
+  <?php include("includes/navbar.php"); ?>
 
 <section class="cid-qLmxJD3etN mbr-fullscreen mbr-parallax-background" id="header2-4">
 
@@ -45,9 +45,11 @@ $mensaje = getMensaje($state, $user);
         <div class="row justify-content-md-center">
             <div class="mbr-white col-md-10">
                 <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1"><?=$mensaje?></h1>
-                
+                <p class="mbr-text pb-3 mbr-fonts-style display-5">Espacio Malcolm</p>
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">"Un espacio para que busques tus apuntes"</p>
-                <div class="mbr-section-btn"><a class="btn btn-md btn-primary display-4" href="index.html">REGISTRARME</a></div>
+                <?php if(!$logged) { ?>
+                    <div class="mbr-section-btn"><a class="btn btn-md btn-primary display-4" href="index.html">REGISTRARME</a></div>
+                <?php } ?>    
             </div>
         </div>
     </div>
@@ -77,7 +79,6 @@ $mensaje = getMensaje($state, $user);
                         </div>
 
                         <div class="card-text">
-                            <h3 class="count pt-3 pb-3 mbr-fonts-style display-2"></h3>
                             <h4 class="mbr-content-title mbr-bold mbr-fonts-style display-7">Primer Paso</h4>
                             <p class="mbr-content-text mbr-fonts-style display-7">Registrate</p>
                         </div>
@@ -91,7 +92,6 @@ $mensaje = getMensaje($state, $user);
                             <span class="mbr-iconfont mbri-credit-card" style="color: rgb(35, 35, 35);"></span>
                         </div>
                         <div class="card-text">
-                            <h3 class="count pt-3 pb-3 mbr-fonts-style display-2"></h3>
                             <h4 class="mbr-content-title mbr-bold mbr-fonts-style display-7">Segundo Paso</h4>
                             <p class="mbr-content-text mbr-fonts-style display-7">Selecciona tu Materia</p>
                         </div>
@@ -104,7 +104,6 @@ $mensaje = getMensaje($state, $user);
                             <span class="mbr-iconfont mbri-cursor-click" style="color: rgb(35, 35, 35);"></span>
                         </div>
                         <div class="card-text">
-                            <h3 class="count pt-3 pb-3 mbr-fonts-style display-2"></h3>
                             <h4 class="mbr-content-title mbr-bold mbr-fonts-style display-7">Tercer Paso</h4>
                             <p class="mbr-content-text mbr-fonts-style display-7">
                             Selecciona y descarga el apunte</p>
@@ -136,39 +135,39 @@ $mensaje = getMensaje($state, $user);
     <div class="container">
         <div class="row justify-content-center">
             <div class="media-container-column col-lg-8" data-form-type="formoid">
-                <div data-form-alert="" hidden="">
-                    Thanks for filling out the form!
-                </div>
+            <div class="result alert ">
 
-                <form class="mbr-form" action="https://mobirise.com/" method="post" data-form-title="Mobirise Form"><input type="hidden" name="email" data-form-email="true" value="gp2oMDm+GaJN5cU576HwAkh9wTFgkagp3wBCxLzWtw9ap2XM7Ax/0y8pMScYERe5B6lEOgsy5lQZF54VYQRBuogtVQQyQOFZckJSdJpcDHfY4bIDxONs4ZBx2t3Ml+cW" data-form-field="Email">
-                    <div class="row row-sm-offset">
-                        <div class="col-md-4 multi-horizontal" data-for="name">
-                            <div class="form-group">
-                                <label class="form-control-label mbr-fonts-style display-7" for="name-form1-s">Nombre</label>
-                                <input type="text" class="form-control" name="name" data-form-field="Name" required="" id="name-form1-s">
-                            </div>
-                        </div>
-                        <div class="col-md-4 multi-horizontal" data-for="email">
-                            <div class="form-group">
-                                <label class="form-control-label mbr-fonts-style display-7" for="email-form1-s">Email</label>
-                                <input type="email" class="form-control" name="email" data-form-field="Email" required="" id="email-form1-s">
-                            </div>
-                        </div>
-                        <div class="col-md-4 multi-horizontal" data-for="phone">
-                            <div class="form-group">
-                                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-s">Teléfono</label>
-                                <input type="tel" class="form-control" name="phone" data-form-field="Phone" id="phone-form1-s">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group" data-for="message">
-                        <label class="form-control-label mbr-fonts-style display-7" for="message-form1-s">Mensaje</label>
-                        <textarea type="text" class="form-control" name="message" rows="7" data-form-field="Message" id="message-form1-s"></textarea>
-                    </div>
-
-                    <span class="input-group-btn"><button href="" type="submit" class="btn btn-form btn-black display-4">ENVIAR</button></span>
-                </form>
             </div>
+            
+            <div class="row row-sm-offset">
+              <div class="col-md-4 multi-horizontal" data-for="name">
+                <div class="form-group">
+                  <label class="form-control-label mbr-fonts-style display-7" for="name-form1-4g">Nombre</label>
+                  <input type="text" class="form-control" name="name" data-form-field="Name" required="" id="nombre">
+                </div>
+              </div>
+              <div class="col-md-4 multi-horizontal" data-for="emailContacto">
+                <div class="form-group">
+                  <label class="form-control-label mbr-fonts-style display-7" for="email-form1-4g">Email</label>
+                  <input type="email" class="form-control" name="emailContacto" data-form-field="emailContacto" required="" id="emailContacto">
+                </div>
+              </div>
+              <div class="col-md-4 multi-horizontal" data-for="phone">
+                <div class="form-group">
+                  <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-4g">Telefono</label>
+                  <input type="tel" class="form-control" name="phone" data-form-field="Phone" id="phone">
+                </div>
+              </div>
+            </div>
+            <div class="form-group" data-for="message">
+              <label class="form-control-label mbr-fonts-style display-7" for="message-form1-4g">Mensaje</label>
+              <textarea type="text" class="form-control" name="message" rows="7" data-form-field="Message" id="message"></textarea>
+            </div>
+            
+            <span class="input-group-btn">
+              <button id="enviar" class="btn btn-form btn-black display-4">ENVIAR</button>
+            </span>
+          </div>
         </div>
     </div>
 </section>

@@ -19,7 +19,7 @@ switch ($_REQUEST["action"]) {
         $dir = $_POST['dir'];
         $cursos = "";
 
-        $stmt = $mysqli->prepare("SELECT pass, grup FROM usuarios WHERE email = ? LIMIT 1");
+        $stmt = $mysqli->prepare("SELECT materias, pass, grup FROM usuarios WHERE email = ? LIMIT 1");
         $stmt->bind_param('s', $email);
 
             $stmt->execute();   // Execute the prepared query.
@@ -27,7 +27,7 @@ switch ($_REQUEST["action"]) {
 
             if ($stmt->num_rows == 1) {
                 //If the user exists get variables from result.
-                $stmt->bind_result($passwordDB, $grup);
+                $stmt->bind_result($materias, $passwordDB, $grup);
                 $stmt->fetch();
                 $stmt->close();
                 if ($password == $passwordDB) {
@@ -36,6 +36,9 @@ switch ($_REQUEST["action"]) {
                     $_SESSION['user'] = $email;
                     $_SESSION['state'] = 6;
                     $_SESSION['grup'] = $grup;
+                    if(!empty($materias)) {
+                        $_SESSION['materias'] = json_decode($materias);
+                    }
                     header('Location: ../index.php');
                     exit();
                 } else {
@@ -90,7 +93,7 @@ switch ($_REQUEST["action"]) {
             $email = $_POST['emailUsuario'];
             $password = $_POST['passwordUsuario'];
 
-            $stmt = $mysqli->prepare("SELECT pass, grup, valid FROM usuarios WHERE email = ? LIMIT 1");
+            $stmt = $mysqli->prepare("SELECT materias, pass, grup, valid FROM usuarios WHERE email = ? LIMIT 1");
             $stmt->bind_param('s', $email);
 
             $stmt->execute();   // Execute the prepared query.
@@ -98,13 +101,16 @@ switch ($_REQUEST["action"]) {
 
             if ($stmt->num_rows == 1) {
                 //If the user exists get variables from result.
-                $stmt->bind_result($passwordDB, $grup, $valid);
+                $stmt->bind_result($materias, $passwordDB, $grup, $valid);
                 $stmt->fetch();
                 if ($password == $passwordDB) {
                     //Logged In!!!!
                     $_SESSION['user_login_checked'] = true;
                     $_SESSION['user'] = $email;
-                    $_SESSION['grup'] = $grup;                   
+                    $_SESSION['grup'] = $grup;
+                    if(!empty($materias)) {
+                        $_SESSION['materias'] = json_decode($materias);
+                    }
 
                     if ($grup != 0) {
                         header('Location: ../gestor/index.php');
@@ -136,7 +142,7 @@ switch ($_REQUEST["action"]) {
         }
         break;
         case "logout":
-        $_SESSION['user_login_checked'] =  false;
+        session_destroy(); 
         $adminIntent = (isset($_SESSION['grup']) && $_SESSION['grup'] != 0) ? true : false;
         if ($adminIntent) {
             header('Location: ../gestor');
@@ -152,7 +158,7 @@ switch ($_REQUEST["action"]) {
             $code = $_GET['validationCode'];
             $email = $_GET['email'];
 
-            $stmt = $mysqli->prepare("SELECT code, valid, grup FROM usuarios WHERE email = ? LIMIT 1");
+            $stmt = $mysqli->prepare("SELECT materias, code, valid, grup FROM usuarios WHERE email = ? LIMIT 1");
 
             $stmt->bind_param('s', $email);
 
@@ -161,12 +167,15 @@ switch ($_REQUEST["action"]) {
 
             if ($stmt->num_rows == 1) {
                 //If the user exists get variables from result.
-                $stmt->bind_result($codeDB, $valid, $grup);
+                $stmt->bind_result($materias, $codeDB, $valid, $grup);
                 $stmt->fetch();
                 if($valid == 1) {
                     $_SESSION['user_login_checked'] = true;
                     $_SESSION['user'] = $email;
                     $_SESSION['grup'] = $grup;
+                    if(!empty($materias)) {
+                        $_SESSION['materias'] = json_decode($materias);
+                    }    
                     $_SESSION['state'] = 0;
                     header('Location: ../../../index.php');
                 } else if ($code == $codeDB) {
@@ -174,6 +183,9 @@ switch ($_REQUEST["action"]) {
                     $_SESSION['user_login_checked'] = true;
                     $_SESSION['grup'] = $grup;
                     $_SESSION['user'] = $email;
+                    if(!empty($materias)) {
+                        $_SESSION['materias'] = json_decode($materias);
+                    }
 
                     if ($stmt = $mysqli->prepare("UPDATE usuarios set valid = 1 WHERE email = ?")) {
                         $stmt->bind_param('s', $email);

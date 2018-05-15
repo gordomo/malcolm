@@ -5,12 +5,26 @@ function login_check()
 }
 
 
-function getMaterias($mysqli, $todas = true) {
-  $query = "SELECT * FROM materias WHERE 1 = 1";
-  if (!$todas) 
-  {
-    $query .= " and habilitada = 1";
+function getMateriasDelUsuario($mysqli, $materiasArray) {
+  $resultado = 0;
+  // die(var_dump($materiasArray));
+  if(!empty($materiasArray)) { 
+    // $materiasArray = $materiasJson;
+    // die(var_dump($$materiasJson));
+    $ids = join("','",$materiasArray); 
+    $query = "SELECT * FROM materias WHERE id in ('$ids')";
+    $query .= " ORDER BY id desc";
+    
+    $resultado = $mysqli->query($query); 
   }
+
+  
+  
+  return $resultado;  
+}
+
+function getMaterias($mysqli) {
+  $query = "SELECT * FROM materias WHERE 1 = 1";
   $query .= " ORDER BY id desc";
   
   $resultado = $mysqli->query($query); 
@@ -61,7 +75,7 @@ function getAnioFromMat($mysqli, $mat) {
   
   $resultado = $mysqli->query($query);
  
-  return $resultado;
+  return $resultado->fetch_assoc();
 }
 
 function getApunte($mysqli, $id)
@@ -91,13 +105,14 @@ function getApuntes($mysqli, $todas = true) {
   return $resultado;
 }
 
-function getApuntesFromCategoria($mysqli, $id)
+function getApuntesFromAnioMateria($mysqli, $idAnio, $idMateria)
 {
-  $query = "SELECT * FROM apuntes WHERE cat_id = $id";
-
+  $query = "SELECT * FROM apuntes WHERE anio_id = $idAnio and mat_id = $idMateria";
+  // die($query);
   $resultado = $mysqli->query($query);
+  if($resultado) $resultado = $resultado->fetch_assoc();
 
-  return $resultado;
+    return $resultado;
 }
 
 function getApuntesFromSubSubCategoria($mysqli, $id)

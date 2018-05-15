@@ -110,7 +110,7 @@ switch ($_REQUEST["action"]) {
                         header('Location: ../');
                     } 
                     else {                       
-                        if(!$valid){    
+                        if(!$valid){
                             $_SESSION['state'] = 12;                        
                         }
                         header('Location: ../index.php');

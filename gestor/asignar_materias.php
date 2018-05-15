@@ -69,23 +69,28 @@ if (is_numeric($id)) {
                                 <tr class="table-heads">
                                     <th class="head-item mbr-fonts-style display-7">NOMBRE</th>
                                     <th class="head-item mbr-fonts-style display-7">MATERIAS ASIGNADAS</th>
-                                    <th class="head-item mbr-fonts-style display-7">MATERIAS</th>
+                                    <th class="head-item mbr-fonts-style display-7" style="width:25%">MATERIAS</th>
                                     <th class="head-item mbr-fonts-style display-7"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="body-item mbr-fonts-style display-7"><?= $usuario['nombre'] ?></td>
+                                    <td class="body-item mbr-fonts-style display-7" ><?= $usuario['nombre'] ?></td>
                                     <td class="body-item mbr-fonts-style display-7" id="materias-asignadas">
-                                        <?php if(!empty($materiasUser)){ foreach ($materias as $mat) { ?>
-                                            <?php foreach($materiasUser as $matUser) { ?>
-                                                   <?php if($mat['id'] == $matUser) { ?>
-                                                         <button class="btn btn-primary delete-materia" value="<?=$mat['id']?>"><?= $mat['name']?><span class="mbr-iconfont mbri-close" style="color: red;"></span></button>    
-                                                   <?php } ?>
-                                            <?php }  ?>
+                                        <?php if(!empty($materiasUser)) { 
+                                                foreach ($materias as $mat) { ?>
+                                                <?php foreach($materiasUser as $matUser) { ?>
+                                                       <?php if($mat['id'] == $matUser) { ?>
+                                                             <button class="btn btn-primary delete-materia" value="<?=$mat['id']?>" style="margin: 0;padding: 0;
+">
+                                                                <?= $mat['name']?>
+                                                                <span class="mbr-iconfont mbri-close" style="color: red;margin: 0 0 0 10px;font-weight: 700;"></span>
+                                                            </button>    
+                                                       <?php } ?>
+                                                <?php }  ?>
                                         <?php } }else{ echo 'Ninguna';} ?>
                                     </td>
-                                    <td class="body-item mbr-fonts-style display-7">
+                                    <td class="body-item mbr-fonts-style display-7" style="margin: 0;padding: 0; width:25%">
                                         <select multiple class="form-control" name="materia" required="true" id="materia">
                                         <?php foreach ($materias as $mat) { ?>
                                         <option value="<?=$mat['id']?>"><?=$mat['name']?></option>
@@ -93,7 +98,9 @@ if (is_numeric($id)) {
                                         </select>
                                     </td>
                                     <td class="body-item mbr-fonts-style display-7">
-                                        <button class="btn btn-primary btn-form display-4 add-materia" id="<?= $id ?>"><span class="mbr-iconfont mbri-plus"></span></button>
+                                        <button class="btn btn-primary btn-form display-4 add-materia" id="<?= $id ?>" style="padding: 0;">
+                                            <span class="mbr-iconfont mbri-plus" style="padding: 5px 10px; margin: 0"></span>
+                                        </button>
                                     </td>
                                 </tr> 
                             </tbody>
