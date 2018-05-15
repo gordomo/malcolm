@@ -74,8 +74,8 @@ function getAnioFromMat($mysqli, $mat) {
   $query .= " ORDER BY id desc";
   
   $resultado = $mysqli->query($query);
- 
-  return $resultado->fetch_assoc();
+  if($resultado) $resultado = $resultado->fetch_assoc();
+  return $resultado;
 }
 
 function getApunte($mysqli, $id)

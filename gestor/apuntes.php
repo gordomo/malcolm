@@ -144,7 +144,9 @@ $apuntes = getApuntes($mysqli);
                                   <td class="body-item mbr-fonts-style display-7">
                                     <select id="anio-edit-<?=$apunte['id']?>">
                                       <option value="0">Sin Año</option>
-                                      <?php foreach (getAnioFromMat($mysqli, $apunte['mat_id']) as $anio) { ?>
+                                      <?php $anio = getAnioFromMat($mysqli, $apunte['mat_id']);
+                                        if($anio) {
+                                      ?>
                                         <option value="<?=$anio['id']?>" <?=($anio['id'] == $apunte['anio_id']) ? 'selected' : ''?>><?=$anio['name']?></option>
                                       <?php } ?>
                                     </select>
