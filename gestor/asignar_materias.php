@@ -81,8 +81,7 @@ if (is_numeric($id)) {
                                                 foreach ($materias as $mat) { ?>
                                                 <?php foreach($materiasUser as $matUser) { ?>
                                                        <?php if($mat['id'] == $matUser) { ?>
-                                                             <button class="btn btn-primary delete-materia" value="<?=$mat['id']?>" style="margin: 0;padding: 0;
-">
+                                                             <button class="btn btn-primary delete-materia" value="<?=$mat['id']?>" style="margin: 3px;padding: 0;">
                                                                 <?= $mat['name']?>
                                                                 <span class="mbr-iconfont mbri-close" style="color: red;margin: 0 0 0 10px;font-weight: 700;"></span>
                                                             </button>    
@@ -153,7 +152,7 @@ if (is_numeric($id)) {
                 var materia = value.split('-');   
                 $(msg).each(function(index2 , value2){     
                     if(materia[0] == value2){    
-                        $('#materias-asignadas').append('<button class="btn btn-primary delete-materia" value="'+value2+'">'+ materia[1] +'<span class="mbr-iconfont mbri-close" style="color: red;"></span></button>');
+                        $('#materias-asignadas').append('<button class="btn btn-primary delete-materia" style="margin: 3px;padding: 0;" value="'+value2+'">'+ materia[1] +'<span class="mbr-iconfont mbri-close" style="color: red;"></span></button>');
                     }
                 });
             });
@@ -186,7 +185,7 @@ if (is_numeric($id)) {
                     var materia= value.split('-');   
                     $(msg).each(function(index2 , value2){ 
                         if(materia[0] == value2){    
-                            $('#materias-asignadas').append('<button class="btn btn-primary delete-materia" value="'+value2+'">'+ materia[1] +'<span class="mbr-iconfont mbri-close" style="color: red;"></span></button>');
+                            $('#materias-asignadas').append('<button class="btn btn-primary delete-materia" style="margin: 3px;padding: 0;" value="'+value2+'">'+ materia[1] +'<span class="mbr-iconfont mbri-close" style="color: red;"></span></button>');
                         }
                         if(msg.length === 0){
                            $('#materias-asignadas').append('Ninguna');
