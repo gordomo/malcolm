@@ -19,7 +19,7 @@ if (login_check($mysqli) == true) {
 
 
 $materia = getMateria($mysqli, $id);
-$anios = getAnioFromMat($mysqli, $id);
+$anios = getAniosFromMat($mysqli, $id);
 
 ?>
 
@@ -71,12 +71,14 @@ $anios = getAnioFromMat($mysqli, $id);
               <div>
                 <?php if($anios) {
                 foreach ($anios as $anio) { 
-                  $apunte = getApuntesFromAnioMateria($mysqli,$anio, $id);
+
+                  $apunte = getApuntesFromAnioMateria($mysqli,$anio['id'], $id);
+                  
                   if($apunte) {
                   ?>
 
                     <a href="gestor/<?=str_replace('../', '', $apunte['file'])?>" target="_BLANCK">
-                      <div class="mbr-gallery-item mbr-gallery-item--p1" data-video-url="false" data-tags="<?=getAnio($mysqli, $apunte['anio_id'])['name']?>">
+                      <div class="mbr-gallery-item mbr-gallery-item--p1" data-video-url="false" data-tags="<?=$anio['name']?>">
                         <div href="#lb-gallery2-x" data-slide-to="0" data-toggle="modal">
                           <img src="assets/images/apunte-1-455x146-455x146.png" alt="">
                           

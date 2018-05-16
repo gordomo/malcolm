@@ -144,10 +144,12 @@ $apuntes = getApuntes($mysqli);
                                   <td class="body-item mbr-fonts-style display-7">
                                     <select id="anio-edit-<?=$apunte['id']?>">
                                       <option value="0">Sin Año</option>
-                                      <?php $anio = getAnioFromMat($mysqli, $apunte['mat_id']);
-                                        if($anio) {
-                                      ?>
-                                        <option value="<?=$anio['id']?>" <?=($anio['id'] == $apunte['anio_id']) ? 'selected' : ''?>><?=$anio['name']?></option>
+                                      <?php $anios = getAniosFromMat($mysqli, $apunte['mat_id']);
+                                        if($anios) {
+                                            foreach ($anios as $key => $anio) { ?>
+                                                <option value="<?=$anio['id']?>" <?=($anio['id'] == $apunte['anio_id']) ? 'selected' : ''?>><?=$anio['name']?></option>
+                                            <?php } ?>
+                                        
                                       <?php } ?>
                                     </select>
                                   </td>
@@ -194,8 +196,8 @@ $apuntes = getApuntes($mysqli);
     
 <script>
     
-    $(".editApunte").click(function(){
-        
+    $(".editApunte").click(function(e){
+        e.preventDefault();
         var id = $(this).attr("id");                  
         var name = $("#name-edit-"+id).val();
         var mat_id = $("#mat-edit-"+id).val();

@@ -128,9 +128,9 @@ switch ($_REQUEST["action"]) {
 
 	case "getAnioFromMat":
 		$idMat = $_POST['idMat'];
-		$resultado = getAnioFromMat($mysqli, $idMat);
+		$resultado = getAniosFromMat($mysqli, $idMat);
 		
-		echo json_encode($resultado);
+		echo json_encode($resultado->fetch_assoc());
 	exit();
         
 }

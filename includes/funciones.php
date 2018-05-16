@@ -69,12 +69,12 @@ function getAnio($mysqli, $id) {
   return $row;
 }
 
-function getAnioFromMat($mysqli, $mat) {   
+function getAniosFromMat($mysqli, $mat) {   
   $query = "SELECT * FROM anios WHERE mat_id = " . $mat;
   $query .= " ORDER BY id desc";
   
   $resultado = $mysqli->query($query);
-  if($resultado) $resultado = $resultado->fetch_assoc();
+  
   return $resultado;
 }
 
@@ -112,7 +112,7 @@ function getApuntesFromAnioMateria($mysqli, $idAnio, $idMateria)
   $resultado = $mysqli->query($query);
   if($resultado) $resultado = $resultado->fetch_assoc();
 
-    return $resultado;
+  return $resultado;
 }
 
 function getApuntesFromSubSubCategoria($mysqli, $id)
