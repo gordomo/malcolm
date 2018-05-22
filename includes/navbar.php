@@ -40,7 +40,7 @@
               </ul>
             <?php if(!$logged) { ?>  
             <div class="navbar-buttons mbr-section-btn">
-              <a class="btn btn-sm btn-primary display-7" href="#" id="registrarme">
+              <a class="btn btn-sm btn-primary display-7 registrarme" href="#" id="registrarme">
                 <span class="mbri-cursor-click mbr-iconfont mbr-iconfont-btn"></span>
                 REGISTRARSE
               </a>

@@ -1021,7 +1021,7 @@ $(function() {
 
 });
 
-$("#registrarme").click(function () {
+$(".registrarme").click(function () {
   $('#myModal').modal('show');
   $("#register-form-link").click();
 });

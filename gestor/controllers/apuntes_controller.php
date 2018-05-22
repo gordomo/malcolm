@@ -25,7 +25,7 @@ switch ($_REQUEST["action"]) {
 			header('Location: ../apuntes.php?status=1');
 		}
 	} else {
-		header('Location: ../apuntes.php?status=4');
+		header('Location: ../apuntes.php?status=4&mensaje='.$uploadStatus["message"]);
 	}
 
 	break;

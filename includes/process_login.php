@@ -50,7 +50,7 @@ switch ($_REQUEST["action"]) {
             } else {
                 $code = generateRandomString();
 
-                if ($stmt = $mysqli->prepare("INSERT INTO usuarios (`email`, `pass`, `code`, `dni`, `nombre`, `apellido`, `dir`, `tel`, `cursos`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+                if ($stmt = $mysqli->prepare("INSERT INTO usuarios (`email`, `pass`, `code`, `dni`, `nombre`, `apellido`, `dir`, `tel`, `materias`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
                     $stmt->bind_param('sssisssss', $email, $password, $code, $dni, $name, $lastName, $dir, $tel, $cursos);
                     if (!$stmt->execute()) {
                         $message = "Falló la ejecución: (" . $stmt->errno . ") " . $stmt->error;
@@ -312,9 +312,9 @@ switch ($_REQUEST["action"]) {
         $mail->IsHTML(true);
         $mail->CharSet = "utf-8";
 
-            $smtpHost = "mail.tusapuntes.net";  // Dominio alternativo brindado en el email de alta 
-            $smtpUsuario = "confirmation@tusapuntes.net";  // Mi cuenta de correo
-            $smtpClave = "Aoi12Jjio92";  // Mi contraseña
+        $smtpHost = "mail.tusapuntes.net";  // Dominio alternativo brindado en el email de alta 
+        $smtpUsuario = "confirmation@tusapuntes.net";  // Mi cuenta de correo
+        $smtpClave = "Aoi12Jjio92";  // Mi contraseña
 
             // VALORES A MODIFICAR //
             $mail->Host = $smtpHost;

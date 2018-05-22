@@ -37,7 +37,7 @@ $mensaje = getMensaje($state, $user);
 <body>
   <?php include("includes/navbar.php"); ?>
 
-<section class="cid-qLmxJD3etN mbr-fullscreen mbr-parallax-background" id="header2-4">
+<section class="cid-qLmxJD3etN mbr-fullscreen mbr-parallax-background" id="header2-4" style="margin-top:15px">
 
     <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(0, 0, 0);"></div>
 
@@ -48,7 +48,7 @@ $mensaje = getMensaje($state, $user);
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">Espacio Malcolm</p>
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">"Un espacio para que busques tus apuntes"</p>
                 <?php if(!$logged) { ?>
-                    <div class="mbr-section-btn"><a class="btn btn-md btn-primary display-4" href="index.html">REGISTRARME</a></div>
+                    <div class="mbr-section-btn"><a class="registrarme btn btn-md btn-primary display-4" href="#">REGISTRARME</a></div>
                 <?php } ?>    
             </div>
         </div>
