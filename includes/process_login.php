@@ -70,6 +70,9 @@ switch ($_REQUEST["action"]) {
                     
                     if ($sendEmail == true) {
                         $_SESSION['state'] = 1;
+                        $asunto = "Nuevo Registro en espaciomalcolm.com.ar";
+                        $message = 'El usuario ' . $email . "acaba de registarse en el sitio.";
+                        $sendEmail = enviarMail($asunto, $message, "contacto@espaciomalcolm.com.ar");
                         header('Location: ../index.php');
                     } else {
                         $_SESSION['state'] = 9;
