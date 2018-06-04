@@ -46,6 +46,12 @@
               </a>
             </div>
             <?php } ?>
+            <div class="navbar-buttons mbr-section-btn">
+              <a class="btn btn-sm btn-primary display-7" href="tel:3416653194">
+                <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
+                341-665-3194
+              </a>
+            </div>
         </div>
     </nav>
 

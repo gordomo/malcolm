@@ -132,7 +132,32 @@ switch ($_REQUEST["action"]) {
 		
 		echo json_encode($resultado->fetch_assoc());
 	exit();
-        
+
+
+	case 'setActividad':
+	sec_session_start();
+	$apunte = $_POST['apunte'];
+	$usr = $_SESSION['user'];
+	
+
+	$stmt = $mysqli->prepare("SELECT apunte FROM actividad WHERE usr = ? LIMIT 1");
+    $stmt->bind_param('s', $usr);
+
+    $stmt->execute();   // Execute the prepared query.
+    $stmt->store_result();
+	if ($stmt->num_rows != 1) {
+
+		if ($stmt = $mysqli->prepare("INSERT INTO actividad (`usr`, `apunte`) VALUES (?, ?)")) {
+			$stmt->bind_param('ss', $usr, $apunte);
+			if (!$stmt->execute()) {
+				echo json_encode(array("response"=>'ko',"message"=>"status=2"));
+			}
+			$stmt->close();
+			echo json_encode(array("response"=>'ok'));
+		} else {
+			echo json_encode(array("response"=>'ko',"message"=>"status=1"));
+		}
+	}	
 }
 
 function limpiarString($texto)

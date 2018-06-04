@@ -47,12 +47,6 @@
               </a>
             </div>
             <?php } ?>
-            <div class="navbar-buttons mbr-section-btn">
-              <a class="btn btn-sm btn-white-outline display-4" href="../includes/process_login.php?action=logout">
-                <span class="mbri-cursor-click mbr-iconfont mbr-iconfont-btn"></span>
-                SALIR
-              </a>
-            </div>
         </div>
     </nav>
 

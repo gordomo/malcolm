@@ -77,7 +77,7 @@ $anios = getAniosFromMat($mysqli, $id);
                   if($apunte) {
                   ?>
 
-                    <a href="gestor/<?=str_replace('../', '', $apunte['file'])?>" target="_BLANCK">
+                    <a href="gestor/<?=str_replace('../', '', $apunte['file'])?>" target="_BLANCK" class="verApunte">
                       <div class="mbr-gallery-item mbr-gallery-item--p1" data-video-url="false" data-tags="<?=$anio['name']?>">
                         <div href="#lb-gallery2-x" data-slide-to="0" data-toggle="modal">
                           <img src="assets/images/apunte-1-455x146-455x146.png" alt="">

@@ -90,7 +90,7 @@ $mensaje = getMensaje($state, $user);
 
             <div class="card p-3  col-md-3">
                 <div class="card-img pb-3">
-                    <a href="anios.php"><span class="mbr-iconfont mbri-bootstrap" style="color: rgb(35, 35, 35);"></span></a>
+                    <a href="anios.php"><span class="mbr-iconfont mbri-add-submenu" style="color: rgb(35, 35, 35);"></span></a>
                 </div>
                 <div class="card-box">
                     <h4 class="card-title py-3 mbr-fonts-style display-5">Años</h4>
@@ -105,6 +105,17 @@ $mensaje = getMensaje($state, $user);
                 <div class="card-box">
                     <h4 class="card-title py-3 mbr-fonts-style display-5">
                         Materias</h4>
+                    <p class="mbr-text mbr-fonts-style display-7"></p>
+                </div>
+            </div>
+
+            <div class="card p-3  col-md-3">
+                <div class="card-img pb-3">
+                    <a href="actividad.php"><span class="mbr-iconfont mbri-bookmark" style="color: rgb(35, 35, 35);"></span></a>
+                </div>
+                <div class="card-box">
+                    <h4 class="card-title py-3 mbr-fonts-style display-5">
+                        Actividad</h4>
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
             </div>

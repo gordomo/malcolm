@@ -271,7 +271,13 @@ function getUsuarios($mysqli) {
   return $resultado;
       
 }
-
+function getActividad($mysqli) {
+  $query = "SELECT * FROM actividad";
+  
+  $resultado = $mysqli->query($query); 
+  
+  return $resultado;
+}
 function getUsuariosNoAdmin($mysqli) {
   $query = "SELECT * FROM usuarios WHERE grup = 0";
   

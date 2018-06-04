@@ -3531,7 +3531,7 @@ body {
   text-align: right;
 }
 .cid-qLmuHvm9fz .navbar {
-  background: #232323;
+  background: #525252;
   transition: none;
   min-height: 77px;
   padding: .5rem 0;
@@ -3692,7 +3692,7 @@ body {
   width: 30px;
   height: 2px;
   border-right: 5px;
-  background-color: #333333;
+  background-color: #fff;
 }
 .cid-qLmuHvm9fz button.navbar-toggler .hamburger span:nth-child(1) {
   top: 0;
